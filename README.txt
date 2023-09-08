@@ -15,11 +15,8 @@ Asegúrate de tener lo siguiente instalado en tu sistema:
 - TypeScript: Puedes instalarlo globalmente con `npm install -g typescript`.
 
 ## Configuración
-1. Clona este repositorio: `git clone https://github.com/tuusuario/tuproyecto.git`
-2. Navega al directorio del proyecto: `cd tuproyecto`
-
-## Instalación de Dependencias
-Ejecuta el siguiente comando para instalar las dependencias del proyecto:
+1. Clona este repositorio: `https://github.com/LanSang69/OperadorMatrices.git`
+2. Navega al directorio del proyecto: `OperadorMatrices/`
 
 ## Uso
 1. Abre el archivo `index.html` en tu navegador web.
