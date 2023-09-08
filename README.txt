@@ -3,11 +3,11 @@
 ## Descripción
 Operador de matrices con la capacidad de llevar a cabo
 cinco operaciones fundamentales:
-• Sumatoria.
-• Resta.
-• Multiplicación entre matrices.
-• Multiplicación de matriz por un vector.
-• Suma de las columnas de una matriz.
+- Sumatoria.
+- Resta.
+- Multiplicación entre matrices.
+- Multiplicación de matriz por un vector.
+- Suma de las columnas de una matriz.
 
 ## Requisitos Previos
 Asegúrate de tener lo siguiente instalado en tu sistema:
