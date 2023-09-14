@@ -9,7 +9,20 @@
 </head>
 
 <body>
+    <div class="notification" id="notification">
+        Modificada
+      </div>
+
     <h1 class="title">OPERACIONES CON MATRICES</h1>
+
+    <div class="previousState">
+        <label for="filas">¿Deseas generar tu entrada previa?</label> &nbsp;
+
+        <button id="si" class="botonMat">Sí</button>
+        <button id="no" class="botonMat">No</button>
+    </div>
+
+    <div class="inputsIniciales">
 
     <label for="opciones">Operación a realizar:</label>
 
@@ -32,6 +45,7 @@
 
         <button id="crearMatriz" class="botonMat">Crear matriz</button>
     </div>
+</div>
 
 
     <div class="mat">
@@ -54,7 +68,11 @@
 
         <div id="resultadoMatriz" class="result"></div>
 
+        <button id="test">try me</button>
+
+        <script src="js/shownotif.js"></script>
         <script src="js/matrices.js"></script>
+        <script src="js/savedMat.js"></script>
         <script src="js/operaciones.js"></script>
 </body>
 

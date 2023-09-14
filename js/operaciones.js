@@ -1,15 +1,18 @@
 "use strict";
+const testb = document.getElementById("test");
 const result = document.getElementById("resultadoMatriz");
+const operarButton = document.getElementById("operarMat");
+const crearMatB = document.getElementById("crearMatriz");
+const storedMat = localStorage.getItem("matInfo");
+const notification = document.getElementById('notification');
+const optindex = document.getElementById("opciones");
 let operacionN = 10;
 let filasN = 0;
 let columnasN = 0;
-const operarButton = document.getElementById("operarMat");
-let matA;
-let matB;
 function operation(opIndex, filas, columnas) {
-    operacionN = opIndex;
     filasN = filas;
     columnasN = columnas;
+    operacionN = opIndex;
 }
 function initializeMatrix(rows, columns) {
     const matrix = [];
@@ -28,7 +31,18 @@ function initializeVector(rows, columns) {
     }
     return matrix;
 }
+crearMatB === null || crearMatB === void 0 ? void 0 : crearMatB.addEventListener("click", () => {
+    if (crearMatB.textContent === "Crear matriz") {
+        crearMatB.textContent = "Modificar matriz";
+    }
+    else {
+        showNotification('Modified', 1000);
+    }
+});
 operarButton.addEventListener("click", () => {
+    if (operacionN >= 0 || operacionN <= 2) {
+        operacionN = optindex.selectedIndex;
+    }
     switch (operacionN) {
         case 0:
             resultOPt.style.display = "block";
@@ -50,6 +64,12 @@ operarButton.addEventListener("click", () => {
             resultOPt.style.display = "block";
             imprimirVec(sumarCol(filasN, columnasN));
             break;
+    }
+});
+testb.addEventListener("click", () => {
+    const savedMat = localStorage.getItem("matInfo");
+    if (savedMat) {
+        console.log(savedMat);
     }
 });
 function imprimirMat(matR) {
@@ -89,6 +109,8 @@ function imprimirVec(matR) {
     matrixResultDiv.appendChild(table);
 }
 function sumarMat(fil, col) {
+    let matA = initializeMatrix(fil, col);
+    let matB = initializeMatrix(fil, col);
     let matR = initializeMatrix(fil, col);
     for (let i = 0; i < fil; i++) {
         for (let j = 0; j < col; j++) {
@@ -101,13 +123,17 @@ function sumarMat(fil, col) {
                 valueA = 0;
                 valueB = 0;
             }
-            // Perform the addition
+            matA[i][j] = valueA;
+            matB[i][j] = valueB;
             matR[i][j] = valueA + valueB;
         }
     }
+    saveData(fil, col, matA, matB);
     return matR;
 }
 function restarMat(fil, col) {
+    let matA = initializeMatrix(fil, col);
+    let matB = initializeMatrix(fil, col);
     let matR = initializeMatrix(fil, col);
     for (let i = 0; i < fil; i++) {
         for (let j = 0; j < col; j++) {
@@ -119,13 +145,17 @@ function restarMat(fil, col) {
                 valueA = 0;
                 valueB = 0;
             }
-            // Perform the addition
+            matA[i][j] = valueA;
+            matB[i][j] = valueB;
             matR[i][j] = valueA - valueB;
         }
     }
+    saveData(fil, col, matA, matB);
     return matR;
 }
 function multMat(fil, col) {
+    let matA = initializeMatrix(fil, col);
+    let matB = initializeMatrix(fil, col);
     let matR = initializeMatrix(fil, col);
     for (let i = 0; i < fil; i++) {
         for (let j = 0; j < col; j++) {
@@ -137,13 +167,17 @@ function multMat(fil, col) {
                 valueA = 0;
                 valueB = 0;
             }
-            // Perform the addition
+            matA[i][j] = valueA;
+            matB[i][j] = valueB;
             matR[i][j] = valueA * valueB;
         }
     }
+    saveData(fil, col, matA, matB);
     return matR;
 }
 function multVec(fil, col) {
+    let matA = initializeVector(fil, col);
+    let matB = initializeMatrix(fil, col);
     let matR = initializeMatrix(fil, col);
     for (let i = 0; i < fil; i++) {
         const inputA = document.getElementById(`matrizA_${i}_${0}`);
@@ -155,13 +189,16 @@ function multVec(fil, col) {
                 valueA = 0;
                 valueB = 0;
             }
-            // Perform the addition
+            matA[i] = valueA;
+            matB[i][j] = valueB;
             matR[i][j] = valueA * valueB;
         }
     }
+    saveDataV(fil, col, matA, matB);
     return matR;
 }
 function sumarCol(fil, col) {
+    let matA = initializeMatrix(fil, col);
     let matR = initializeVector(fil, col);
     for (let i = 0; i < fil; i++) {
         for (let j = 0; j < col; j++) {
@@ -170,9 +207,40 @@ function sumarCol(fil, col) {
             if (isNaN(valueA)) {
                 valueA = 0;
             }
-            // Perform the addition
+            matA[i][j] = valueA;
             matR[i] += valueA;
         }
     }
+    saveData(fil, col, matA, initializeMatrix(fil, col));
     return matR;
+}
+function showNotification(message, duration) {
+    notification.textContent = message;
+    notification.style.display = 'block';
+    // Automatically hide the notification after the specified duration (in milliseconds)
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, duration);
+}
+function saveData(fil, col, matA, matB) {
+    const matricesData = {
+        operacion: operacionN,
+        filas: fil,
+        columnas: col,
+        MatrizA: matA,
+        MatrizB: matB,
+    };
+    const jsonData = JSON.stringify(matricesData);
+    localStorage.setItem("matInfo", jsonData);
+}
+function saveDataV(fil, col, matA, matB) {
+    const matricesData = {
+        operacion: operacionN,
+        filas: fil,
+        columnas: col,
+        MatrizA: matA,
+        MatrizB: matB,
+    };
+    const jsonData = JSON.stringify(matricesData);
+    localStorage.setItem("matInfo", jsonData);
 }

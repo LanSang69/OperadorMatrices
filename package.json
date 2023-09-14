@@ -11,5 +11,10 @@
   "license": "ISC",
   "devDependencies": {
     "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "izitoast": "^1.4.0",
+    "toastr": "^2.1.4"
   }
 }
