@@ -8,11 +8,15 @@ const inputFil = document.getElementById("filas") as HTMLInputElement;
 const inputCol = document.getElementById("columnas") as HTMLInputElement;
 
 notB!.addEventListener('click', () => {   //I return to the initial state where the user selects both rows and columns
+    inputFil.value = "";
+    inputCol.value = "";
+    optindex.selectedIndex = 0;
+    
     previousE!.style.display = "none";
     inputMat!.style.display = "block";
 });
 
-yesB!.addEventListener('click', () => {   //I generate automatically the inputs for matA and/or matB
+yesB!.addEventListener('click', () => {   
     const storedMat = localStorage.getItem('matInfo');
 
     if (storedMat) {

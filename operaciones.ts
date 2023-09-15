@@ -1,4 +1,3 @@
-const testb = document.getElementById("test");
 const result = document.getElementById("resultadoMatriz") as HTMLElement;
 const operarButton = document.getElementById("operarMat") as HTMLButtonElement;
 const crearMatB = document.getElementById("crearMatriz");
@@ -70,13 +69,6 @@ operarButton.addEventListener("click", () => {
         imprimirVec(sumarCol(filasN, columnasN));
         break;
     }
-});
-
-testb!.addEventListener("click", () => {
-  const savedMat = localStorage.getItem("matInfo");
-  if (savedMat) {
-    console.log(savedMat);
-  }
 });
 
 function imprimirMat(matR: number[][]) {
@@ -310,8 +302,8 @@ function saveData(
     MatrizB: matB,
   };
 
-  const jsonData = JSON.stringify(matricesData);
-  localStorage.setItem("matInfo", jsonData);
+  const jsonData = JSON.stringify(matricesData); //Se almacena el valor como string
+  localStorage.setItem("matInfo", jsonData); //Se guarda como matInfo para usarlo después
 }
 
 
@@ -333,4 +325,3 @@ function saveDataV(
   const jsonData = JSON.stringify(matricesData);
   localStorage.setItem("matInfo", jsonData);
 }
-  

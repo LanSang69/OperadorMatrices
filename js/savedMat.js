@@ -8,6 +8,9 @@ const resultOperar = document.getElementById("resultadoMatriz");
 const inputFil = document.getElementById("filas");
 const inputCol = document.getElementById("columnas");
 notB.addEventListener('click', () => {
+    inputFil.value = "";
+    inputCol.value = "";
+    optindex.selectedIndex = 0;
     previousE.style.display = "none";
     inputMat.style.display = "block";
 });
